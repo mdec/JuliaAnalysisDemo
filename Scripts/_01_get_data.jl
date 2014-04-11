@@ -15,11 +15,14 @@ download_response = get("$base_url/gd80to84.txt")
 names(download_response)
 
 # Make sure we actually got some data
-dump(download_response.data)
+#dump(download_response.data)
 print(download_response.data)
 
 # Keep only the data part of the response
 data = download_response.data
+
+# Remove the consecutive delimiters in the column names.
+data = replace(data, "\t\t", "\t")
 
 # Write the string to a local file - we'll use this from now on.
 data_file = open("$base_folder/Data/gd80to84.txt", "w+")
